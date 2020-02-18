@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://tanks/Tank.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tanks/Player.gd" type="Script" id=2]
+[ext_resource path="res://bullets/PlayerBullet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/onlyObjects_retina_rotated.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 39.8049, 38.4335 )
+
+[node name="Player" instance=ExtResource( 1 )]
+rotation = -0.00698726
+collision_layer = 2
+collision_mask = 5
+script = ExtResource( 2 )
+Bullet = ExtResource( 3 )
+max_speed = 200
+rotation_speed = 1.0
+gun_cooldown = 0.5
+max_health = 100
+
+[node name="Body" parent="." index="0"]
+rotation = 0.00941555
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 308, 262, 81, 84 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="Turret" parent="." index="2"]
+rotation = 0.00766398
+texture = ExtResource( 4 )
+offset = Vector2( 20, 0 )
+region_enabled = true
+region_rect = Rect2( 684, 13, 61, 25 )
+
+[node name="Muzzle" parent="Turret" index="0"]
+position = Vector2( 55, 0 )
+
+[node name="Flash" parent="Turret" index="1"]
+position = Vector2( 55, 0 )
+texture = ExtResource( 4 )
+offset = Vector2( 25, 0 )
+region_rect = Rect2( 584, 58, 58, 32 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
+rotation = -0.000680008
+current = true
+zoom = Vector2( 1.4, 1.4 )
+
+[connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]

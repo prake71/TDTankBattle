@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/UnitDisplay.gd" type="Script" id=1]
+[ext_resource path="res://assets/UI/barHorizontal_green_mid 200.png" type="Texture" id=2]
+
+[node name="UnitDisplay" type="Node2D"]
+position = Vector2( -0.290009, -0.494171 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+margin_left = -94.5101
+margin_top = -152.001
+margin_right = 105.49
+margin_bottom = -112.001
+value = 100.0
+texture_progress = ExtResource( 2 )
+
